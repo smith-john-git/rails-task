@@ -6,7 +6,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RailsExample
+module RailsTask
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
@@ -19,8 +19,8 @@ module RailsExample
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    Rails.logger = Logger.new(STDOUT)
-    config.logger = ActiveSupport::Logger.new("log/#{Rails.env}.log")
+    config.logger = Logger.new(STDOUT)
+    config.logger = Logger.new("log/#{Rails.env}.log")
 
   end
 end
