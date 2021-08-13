@@ -1,12 +1,16 @@
 require 'csv'
 
 class EstatesController < ApplicationController
-  def new
+  def index
+    @estates = Estate.page(params[:page])
+  end
+
+  def import
     @estate = Estate.new
   end
 
-  def create
-    uploaded_io = params[:estate][:data]
+  def upload
+    uploaded_io = params[:data]
     csv_string = uploaded_io.read
     csv = CSV.parse(csv_string, headers: true)
     logger.debug csv
@@ -23,6 +27,7 @@ class EstatesController < ApplicationController
         estate.save!
       end
     end
+    redirect_to action: :index, page: 1
   end
 end
 
