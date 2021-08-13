@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   get '/import', to: 'estates#import'
   post '/upload', to: 'estates#upload'
   get '/', to: redirect('/import')
+
+  get '/404', to: 'static_pages#not_found'
+  get '/500', to: 'static_pages#internal_error'
+  match '*unmatched', to: redirect('/404'), via: :all
 end

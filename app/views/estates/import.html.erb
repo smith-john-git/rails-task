@@ -1,6 +1,8 @@
-<div>
-    <%= form_with url: "/upload", method: :post do |f| %>
-        <%= f.file_field :data %>
-        <%= f.submit 'Send' %>
-    <% end %>
+<div class="container">
+    <div class="mt-5 row justify-content-md-center">
+        <%= form_with class: "col d-flex justify-content-center", url: "/upload", method: :post do |f| %>
+            <%= f.file_field :data %>
+            <%= f.submit 'Send' %>
+        <% end %>
+    </div>    
 </div>

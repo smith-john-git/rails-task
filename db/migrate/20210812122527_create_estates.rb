@@ -61,8 +61,6 @@ class CreateEstates < ActiveRecord::Migration[6.1]
       t.boolean :feature_vending_machines
       t.boolean :feature_videoconferencing_studio
       t.boolean :feature_voicemail
-
-      t.timestamps
     end
   end
 end
