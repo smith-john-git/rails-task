@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <% Estate.new.attributes.keys.each do |key| %>
+        <th><%= key %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @estates.each do |estate| %>
+      <tr>
+        <% estate.attributes.values.each do |value| %>
+          <td>
+            <%= truncate(value.to_s, length: 80) %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @estates %>

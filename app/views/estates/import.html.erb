@@ -1,0 +1,6 @@
+<div>
+    <%= form_with url: "/upload", method: :post do |f| %>
+        <%= f.file_field :data %>
+        <%= f.submit 'Send' %>
+    <% end %>
+</div>
