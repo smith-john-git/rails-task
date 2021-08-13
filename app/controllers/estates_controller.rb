@@ -10,17 +10,16 @@ class EstatesController < ApplicationController
   end
 
   def upload
-    uploaded_io = params[:data]
-    csv_string = uploaded_io.read
-    csv = CSV.parse(csv_string, headers: true)
+    csv = get_csv
     logger.debug csv
     csv.each do |row|
       # logger.debug row.to_hash
       encoded = encode_hash(row.to_hash)
-      logger.debug encoded['centre_id']
+      centre_id = encoded['centre_id']
+      logger.debug centre_id
       logger.debug Estate.exists?(131)
-      if Estate.exists?(centre_id: encoded['centre_id'])
-        estate = Estate.find(encoded['centre_id'])
+      if Estate.exists?(centre_id: centre_id)
+        estate = Estate.find(centre_id)
         estate.update!(encoded.except(:centre_id))
       else
         estate = Estate.new(encoded)
@@ -29,6 +28,13 @@ class EstatesController < ApplicationController
     end
     redirect_to action: :index, page: 1
   end
+
+  protected
+  def get_csv
+    uploaded_io = params[:data]
+    csv_string = uploaded_io.read
+    CSV.parse(csv_string, headers: true)
+  end
+
+
 end
-
-
