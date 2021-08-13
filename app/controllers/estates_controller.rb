@@ -1,7 +1,6 @@
 require 'csv'
 
 class EstatesController < ApplicationController
-
   def new
     @estate = Estate.new
   end
@@ -24,17 +23,7 @@ class EstatesController < ApplicationController
         estate.save!
       end
     end
-    # first_line = csv[0]
-    # estate = Estate.find(first_line[:centre_id]) rescue nil
-    # estate ||= Estate.new(first_line.to_hash)
-    # estate.save!
   end
 end
 
-def encode_hash(input)
-  output = Hash.new
-  input.each do |key, value|
-    output[key] = value.encode('utf-8', :invalid => :replace, :undef => :replace, :replace => '_') rescue nil
-  end
-  output
-end
+

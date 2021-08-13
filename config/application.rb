@@ -22,5 +22,6 @@ module RailsTask
     config.logger = Logger.new(STDOUT)
     config.logger = Logger.new("log/#{Rails.env}.log")
 
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end
